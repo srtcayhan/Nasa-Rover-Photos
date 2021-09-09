@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".NasaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NasaAssignment" >
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

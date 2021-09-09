@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">NasaAssignment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="opportunity">Opportunity</string>
+    <string name="spirit">Spirit</string>
+    <string name="date_of_capture">Date of capture:</string>
+    <string name="_09_09_2021">09/09/2021</string>
+    <string name="camera_name">Camera Name:</string>
+    <string name="fhaz">FHAZ</string>
+    <string name="rover_name">Rover Name:</string>
+    <string name="curiosity">Curiosity</string>
+    <string name="rover_status">Rover Status:</string>
+    <string name="active">Active</string>
+    <string name="rover_launch_date">Rover Launch Date:</string>
+    <string name="rover_landing_date">Rover Landing Date:</string>
+    <string name="_25_04_1996">25/04/1996</string>
 </resources>

@@ -1,0 +1,17 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:id="@+id/roverCardView"
+    app:cardCornerRadius="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/roverCardImage"
+            android:layout_width="177sp"
+            android:layout_height="140sp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+</androidx.cardview.widget.CardView>

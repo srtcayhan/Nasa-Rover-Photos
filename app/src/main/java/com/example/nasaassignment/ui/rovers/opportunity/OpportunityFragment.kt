@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.databinding.FragmentOpportunityBinding
+import com.example.nasaassignment.ui.IMenuOnClick
+import com.example.nasaassignment.ui.MainActivity
 import com.example.nasaassignment.ui.photodetails.IPhotoOnClick
 import com.example.nasaassignment.ui.photodetails.PhotoDetailsFragment
 import com.example.nasaassignment.ui.rovers.RoversAdapter
@@ -20,7 +22,7 @@ import com.example.nasaassignment.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OpportunityFragment : Fragment() , IPhotoOnClick{
+class OpportunityFragment : Fragment() , IPhotoOnClick, IMenuOnClick{
 
     private lateinit var binding: FragmentOpportunityBinding
     private val viewModel: OpportunityViewModel by viewModels()
@@ -44,12 +46,14 @@ class OpportunityFragment : Fragment() , IPhotoOnClick{
         binding.opportunityRecyclerView.layoutManager = GridLayoutManager(context, 3)
         binding.opportunityRecyclerView.adapter = roversAdapter
 
+        (activity as MainActivity).addListener(this)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getRoverByName("opportunity").observe(viewLifecycleOwner, { response ->
+        viewModel.getRoverByName("opportunity",camera = null,page=null).observe(viewLifecycleOwner, { response ->
 
             when (response.status) {
                 Resource.Status.LOADING -> {
@@ -83,5 +87,29 @@ class OpportunityFragment : Fragment() , IPhotoOnClick{
     private fun setPhotoDetails(photo: Photo){
         val popupdialog = PhotoDetailsFragment(photo)
         popupdialog.show(requireActivity().supportFragmentManager,"PopUpDialog")
+    }
+
+    override fun onMenuClick(camera: String) {
+
+        Log.d("TAG", "onMenuClick: " + camera)
+        viewModel.getRoverByName("opportunity", camera,page = null).observe(viewLifecycleOwner, { response ->
+
+            when (response.status) {
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.SUCCESS -> {
+//                    Log.d(ContentValues.TAG, "onCreate: "+response.data.toString())
+                    viewModel.photoList = response.data?.photos
+                    // if its not null add all
+                    setPhotoList(viewModel.photoList)
+                    Log.d("TAG", "onMenuClick: " + viewModel.photoList?.size)
+                }
+                Resource.Status.ERROR -> {
+                    Log.d(ContentValues.TAG, "getRestaurants: ${response.message}")
+                }
+            }
+
+        })
     }
 }

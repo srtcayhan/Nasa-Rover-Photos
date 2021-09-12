@@ -19,10 +19,10 @@ class SpiritViewModel @Inject constructor(
 
     var photoList: ArrayList<Photo>? = null
 
-    fun getRoverByName(name: String): LiveData<Resource<RoverResponse>> {
-        return apiRepository.getRoverByName(name)
-    }
+    fun getRoverByName(name : String, camera: String?,page: Int?): LiveData<Resource<RoverResponse>> {
+        return apiRepository.getRoverByName(name,camera,page)}
 
     fun getManifestByName(name : String): LiveData<Resource<ManifestResponse>> {
         return apiRepository.getManifestByName(name)}
+
 }

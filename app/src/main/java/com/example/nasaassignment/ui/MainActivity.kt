@@ -11,12 +11,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import com.example.nasaassignment.R
+import com.example.nasaassignment.ui.rovers.curiosity.CuriosityFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNav: BottomNavigationView
+
+    private var listener: IMenuOnClick? = null
+
+    private lateinit var popupMenu: PopupMenu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +41,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.toolbar_menu, menu)
+
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        Log.d("TAG", "onOptionsItemSelected: "+item.itemId)
         when (item.itemId) {
             R.id.filter -> {
 
@@ -48,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 
                 return true
             }
-           // todo call api with menu item text as camera name item.tooltipText
 
+            else -> super.onOptionsItemSelected(item)
         }
         return true
     }
@@ -61,12 +69,14 @@ class MainActivity : AppCompatActivity() {
         Log.d("selectedItem", "setupBottomNavMenu: $menuItem")
 
         val menuItemView = findViewById<View>(R.id.filter)
-        val popupMenu = PopupMenu(this, menuItemView)
+        popupMenu = PopupMenu(this, menuItemView)
 
         when (selectedItem) {
+
             R.id.curiosityFragment -> {
 
                 popupMenu.inflate(R.menu.filter_curiosity)
+
             }
             R.id.opportunityFragment -> {
 
@@ -77,8 +87,15 @@ class MainActivity : AppCompatActivity() {
                 popupMenu.inflate(R.menu.filter_spirit)
             }
         }
+        popupMenu.setOnMenuItemClickListener {
+            listener?.onMenuClick(it.title.toString())
+            return@setOnMenuItemClickListener true
+        }
         popupMenu.show()
 
     }
 
+    fun addListener(listener: IMenuOnClick){
+        this.listener = listener
+    }
 }

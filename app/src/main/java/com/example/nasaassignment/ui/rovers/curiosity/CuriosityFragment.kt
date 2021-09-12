@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.databinding.FragmentCuriosityBinding
+import com.example.nasaassignment.ui.IMenuOnClick
+import com.example.nasaassignment.ui.MainActivity
 import com.example.nasaassignment.ui.photodetails.IPhotoOnClick
 import com.example.nasaassignment.ui.photodetails.PhotoDetailsFragment
 import com.example.nasaassignment.ui.rovers.RoversAdapter
@@ -18,7 +20,7 @@ import com.example.nasaassignment.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CuriosityFragment : Fragment() , IPhotoOnClick{
+class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
 
 
     private lateinit var binding: FragmentCuriosityBinding
@@ -43,12 +45,14 @@ class CuriosityFragment : Fragment() , IPhotoOnClick{
         binding.curiosityRecyclerView.layoutManager = GridLayoutManager(context, 3)
         binding.curiosityRecyclerView.adapter = roversAdapter
 
+        (activity as MainActivity).addListener(this)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getRoverByName("curiosity").observe(viewLifecycleOwner, { response ->
+        viewModel.getRoverByName("curiosity",camera = null,page=null).observe(viewLifecycleOwner, { response ->
 
             when (response.status) {
                 Resource.Status.LOADING -> {
@@ -59,9 +63,9 @@ class CuriosityFragment : Fragment() , IPhotoOnClick{
                     viewModel.photoList = response.data?.photos
                     // if its not null add all
                     setPhotoList(viewModel.photoList)
+                    Log.d("TAG", "onClick: " + viewModel.photoList?.size)
                 }
                 Resource.Status.ERROR -> {
-                    Log.d(ContentValues.TAG, "getRestaurants: ${response.message}")
                 }
             }
 
@@ -75,14 +79,39 @@ class CuriosityFragment : Fragment() , IPhotoOnClick{
         binding.curiosityRecyclerView.adapter = adapter
 
     }
+
     override fun onClick(photo: Photo) {
         Log.d(ContentValues.TAG, "onClick: sadasd")
         setPhotoDetails(photo)
     }
 
-    private fun setPhotoDetails(photo: Photo){
+    private fun setPhotoDetails(photo: Photo) {
         val popupdialog = PhotoDetailsFragment(photo)
-        popupdialog.show(requireActivity().supportFragmentManager,"PopUpDialog")
+        popupdialog.show(requireActivity().supportFragmentManager, "PopUpDialog")
+    }
+
+    override fun onMenuClick(camera: String) {
+
+        Log.d("TAG", "onMenuClick: " + camera)
+        viewModel.getRoverByName("curiosity", camera,page = null).observe(viewLifecycleOwner, { response ->
+
+            when (response.status) {
+                Resource.Status.LOADING -> {
+
+                }
+                Resource.Status.SUCCESS -> {
+//                    Log.d(ContentValues.TAG, "onCreate: "+response.data.toString())
+                    viewModel.photoList = response.data?.photos
+                    // if its not null add all
+                    setPhotoList(viewModel.photoList)
+                    Log.d("TAG", "onMenuClick: " + viewModel.photoList?.size)
+                }
+                Resource.Status.ERROR -> {
+                    Log.d(ContentValues.TAG, "getRestaurants: ${response.message}")
+                }
+            }
+
+        })
     }
 
 }

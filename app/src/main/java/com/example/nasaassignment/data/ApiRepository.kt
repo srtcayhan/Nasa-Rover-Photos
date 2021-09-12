@@ -8,15 +8,12 @@ class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource
 ) {
 
-    fun getRoverByName(name: String) = performNetworkOperation {
-        remoteDataSource.getRoverByName(name)
+    fun getRoverByName(name: String,camera: String?,page: Int?) = performNetworkOperation {
+        remoteDataSource.getRoverByName(name,camera,page)
     }
 
     fun getManifestByName(name: String) = performNetworkOperation {
         remoteDataSource.getManifestByName(name)
     }
 
-    fun getPhotosByCamera(name: String, camera: String) = performNetworkOperation {
-        remoteDataSource.getPhotosByCamera(name,camera)
-    }
 }

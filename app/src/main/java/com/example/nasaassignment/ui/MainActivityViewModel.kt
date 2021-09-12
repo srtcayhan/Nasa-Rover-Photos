@@ -1,4 +1,4 @@
-package com.example.nasaassignment.ui.rovers.curiosity
+package com.example.nasaassignment.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
@@ -12,7 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CuriosityViewModel @Inject constructor(
+class MainActivityViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
 ) : ViewModel() {
@@ -21,7 +21,7 @@ class CuriosityViewModel @Inject constructor(
 
     var cameraList: ArrayList<Photo>? = null
 
-    fun getRoverByName(name : String): LiveData<Resource<RoverResponse>> {
+    fun getRoverByName(name : String, camera: String): LiveData<Resource<RoverResponse>> {
         return apiRepository.getRoverByName(name)}
 
     fun getManifestByName(name : String): LiveData<Resource<ManifestResponse>> {

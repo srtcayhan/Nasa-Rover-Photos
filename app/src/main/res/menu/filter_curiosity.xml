@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/camera_fhaz"
+        android:title="@string/camera_fhaz"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_rhaz"
+        android:title="@string/camera_rhaz"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_mast"
+        android:title="@string/camera_mast"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_chemcam"
+        android:title="@string/camera_chemcam"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_mahli"
+        android:title="@string/camera_mahli"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_mardi"
+        android:title="@string/camera_mardi"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/camera_navcam"
+        android:title="@string/camera_navcam"
+        app:showAsAction="always" />
+
+</menu>

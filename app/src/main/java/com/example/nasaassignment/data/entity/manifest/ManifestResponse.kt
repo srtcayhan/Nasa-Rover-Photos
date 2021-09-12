@@ -4,13 +4,6 @@ data class ManifestResponse(
     val photo_manifest: PhotoManifest
 )
 
-data class Photo(
-    val cameras: List<String>,
-    val earth_date: String,
-    val sol: Int,
-    val total_photos: Int
-)
-
 data class PhotoManifest(
     val landing_date: String,
     val launch_date: String,
@@ -19,5 +12,12 @@ data class PhotoManifest(
     val name: String,
     val photos: List<Photo>,
     val status: String,
+    val total_photos: Int
+)
+
+data class Photo(
+    val cameras: ArrayList<String>,
+    val earth_date: String,
+    val sol: Int,
     val total_photos: Int
 )

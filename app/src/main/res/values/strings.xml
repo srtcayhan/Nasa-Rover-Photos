@@ -6,7 +6,6 @@
     <string name="date_of_capture">Date of capture:</string>
     <string name="_09_09_2021">09/09/2021</string>
     <string name="camera_name">Camera Name:</string>
-    <string name="fhaz">FHAZ</string>
     <string name="rover_name">Rover Name:</string>
     <string name="curiosity">Curiosity</string>
     <string name="rover_status">Rover Status:</string>
@@ -14,4 +13,41 @@
     <string name="rover_launch_date">Rover Launch Date:</string>
     <string name="rover_landing_date">Rover Landing Date:</string>
     <string name="_25_04_1996">25/04/1996</string>
+    <string name="camera_fhaz">FHAZ</string>
+    <string name="camera_rhaz">RHAZ</string>
+    <string name="camera_mast">MAST</string>
+    <string name="camera_chemcam">CHEMCAM</string>
+    <string name="camera_mahli">MAHLI</string>
+    <string name="camera_mardi">MARDI</string>
+    <string name="camera_navcam">NAVCAM</string>
+    <string name="camera_pancam">PANCAM</string>
+    <string name="camera_minites">MINITES</string>
+    <string name="filter">filter</string>
+
+    <string-array name="curiosity_cameras">
+        <item>@string/camera_fhaz</item>
+        <item>@string/camera_rhaz</item>
+        <item>@string/camera_mast</item>
+        <item>@string/camera_chemcam</item>
+        <item>@string/camera_mahli</item>
+        <item>@string/camera_mardi</item>
+        <item>@string/camera_navcam</item>
+    </string-array>
+
+    <string-array name="opportunity_cameras">
+        <item>@string/camera_fhaz</item>
+        <item>@string/camera_rhaz</item>
+        <item>@string/camera_navcam</item>
+        <item>@string/camera_pancam</item>
+        <item>@string/camera_minites</item>
+    </string-array>
+
+    <string-array name="spirit_cameras">
+        <item>@string/camera_fhaz</item>
+        <item>@string/camera_rhaz</item>
+        <item>@string/camera_navcam</item>
+        <item>@string/camera_pancam</item>
+        <item>@string/camera_minites</item>
+    </string-array>
+
 </resources>

@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.databinding.FragmentCuriosityBinding
 import com.example.nasaassignment.ui.photodetails.IPhotoOnClick
 import com.example.nasaassignment.ui.photodetails.PhotoDetailsFragment
 import com.example.nasaassignment.ui.rovers.RoversAdapter
-import com.example.nasaassignment.ui.rovers.opportunity.OpportunityFragmentDirections
 import com.example.nasaassignment.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -59,6 +57,7 @@ class CuriosityFragment : Fragment() , IPhotoOnClick{
                 Resource.Status.SUCCESS -> {
 //                    Log.d(ContentValues.TAG, "onCreate: "+response.data.toString())
                     viewModel.photoList = response.data?.photos
+                    // if its not null add all
                     setPhotoList(viewModel.photoList)
                 }
                 Resource.Status.ERROR -> {
@@ -85,4 +84,5 @@ class CuriosityFragment : Fragment() , IPhotoOnClick{
         val popupdialog = PhotoDetailsFragment(photo)
         popupdialog.show(requireActivity().supportFragmentManager,"PopUpDialog")
     }
+
 }

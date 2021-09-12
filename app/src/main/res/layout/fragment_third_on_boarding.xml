@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.FirstOnBoardingFragment"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/spiritrover" />
+
+    <TextView
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="touch to photo"
+        android:textAllCaps="true"
+        android:textSize="24dp"
+        android:textColor="#F8A39D"
+        android:fontFamily="@font/josefinsans_medium"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="for photo detaıls"
+        android:textAllCaps="true"
+        android:textSize="24dp"
+        android:textColor="#F8A39D"
+        android:fontFamily="@font/josefinsans_medium"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <TextView
+        android:padding="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam, arcu sit amet finibus finibus, libero est malesuada sapien, sed efficitur erat dui eu lacus."
+        android:textAllCaps="true"
+        android:textSize="14dp"
+        android:textColor="#F8A39D"
+        android:fontFamily="@font/josefinsans_medium"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/onboarding_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="280dp"
+        android:fontFamily="@font/josefinsans_medium"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

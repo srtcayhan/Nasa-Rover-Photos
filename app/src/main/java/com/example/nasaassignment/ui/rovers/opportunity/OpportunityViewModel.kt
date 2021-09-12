@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.nasaassignment.data.ApiRepository
+import com.example.nasaassignment.data.entity.manifest.ManifestResponse
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.data.entity.rover.RoverResponse
 import com.example.nasaassignment.utils.Resource
@@ -21,4 +22,6 @@ class OpportunityViewModel @Inject constructor(
     fun getRoverByName(name: String): LiveData<Resource<RoverResponse>> {
         return apiRepository.getRoverByName(name)
     }
+    fun getManifestByName(name : String): LiveData<Resource<ManifestResponse>> {
+        return apiRepository.getManifestByName(name)}
 }

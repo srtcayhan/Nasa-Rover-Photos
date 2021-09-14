@@ -149,7 +149,7 @@ class SpiritFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
                         )
 
                         if (viewModel.photoList?.size == 0) {
-                            Toast.makeText(activity, "photo not found", Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity, "photo not found", Toast.LENGTH_SHORT).show()
                         }
                     }
                     Resource.Status.ERROR -> {

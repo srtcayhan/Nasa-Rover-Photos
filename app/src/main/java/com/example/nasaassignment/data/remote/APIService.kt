@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface APIService {
 
-    @GET("rovers/{name}/photos?sol=1000&api_key=8WOqaP9QYJMXntVz3lTb6slKdt62ZF1nJkFLR6fj")
+    @GET("rovers/{name}/photos?sol=37&api_key=8WOqaP9QYJMXntVz3lTb6slKdt62ZF1nJkFLR6fj")
     suspend fun getRoverByName(
         @Path("name") name: String,
         @Query("camera") camera: String?,

@@ -6,7 +6,6 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(
     private val apiService: APIService
 ) : BaseDataSource() {
-    suspend fun getRoverByName(name: String,camera: String?,page: Int?) = getResult { apiService.getRoverByName(name,camera,page) }
-
-    suspend fun getManifestByName(name: String) = getResult { apiService.getManifestByName(name) }
+    suspend fun getRoverByName(name: String, camera: String?, page: Int?) =
+        getResult { apiService.getRoverByName(name, camera, page) }
 }

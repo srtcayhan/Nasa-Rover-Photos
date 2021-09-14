@@ -1,19 +1,18 @@
 package com.example.nasaassignment.ui
+
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.hilt.android.AndroidEntryPoint
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.nasaassignment.R
-import com.example.nasaassignment.ui.rovers.curiosity.CuriosityFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        Log.d("TAG", "onOptionsItemSelected: "+item.itemId)
         when (item.itemId) {
             R.id.filter -> {
 
@@ -95,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun addListener(listener: IMenuOnClick){
+    fun addListener(listener: IMenuOnClick) {
         this.listener = listener
     }
 }

@@ -2,11 +2,10 @@ package com.example.nasaassignment.ui.onboarding
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.nasaassignment.R
+import androidx.fragment.app.Fragment
 import com.example.nasaassignment.data.local.SharedPrefManager
 import com.example.nasaassignment.databinding.FragmentThirdOnBoardingBinding
 import com.example.nasaassignment.ui.MainActivity
@@ -22,7 +21,7 @@ class ThirdOnBoardingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentThirdOnBoardingBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

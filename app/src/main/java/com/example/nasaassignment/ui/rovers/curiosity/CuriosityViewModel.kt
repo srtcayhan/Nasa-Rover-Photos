@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.nasaassignment.data.ApiRepository
-import com.example.nasaassignment.data.entity.manifest.ManifestResponse
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.data.entity.rover.RoverResponse
 import com.example.nasaassignment.utils.Resource
@@ -19,12 +18,12 @@ class CuriosityViewModel @Inject constructor(
 
     var photoList: ArrayList<Photo>? = null
 
-    var cameraList: ArrayList<Photo>? = null
-
-    fun getRoverByName(name : String, camera: String?,page: Int?): LiveData<Resource<RoverResponse>> {
-        return apiRepository.getRoverByName(name,camera,page)}
-
-    fun getManifestByName(name : String): LiveData<Resource<ManifestResponse>> {
-        return apiRepository.getManifestByName(name)}
+    fun getRoverByName(
+        name: String,
+        camera: String?,
+        page: Int?
+    ): LiveData<Resource<RoverResponse>> {
+        return apiRepository.getRoverByName(name, camera, page)
+    }
 
 }

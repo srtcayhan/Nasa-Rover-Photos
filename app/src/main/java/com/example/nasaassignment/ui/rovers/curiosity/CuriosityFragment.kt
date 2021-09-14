@@ -1,14 +1,15 @@
 package com.example.nasaassignment.ui.rovers.curiosity
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.databinding.FragmentCuriosityBinding
 import com.example.nasaassignment.ui.IMenuOnClick
@@ -22,10 +23,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
 
-
     private lateinit var binding: FragmentCuriosityBinding
     private val viewModel: CuriosityViewModel by viewModels()
 
+    private var page = 1
+
+    private var camera: String? = "fhaz"
 
     private var adapter = RoversAdapter()
 
@@ -34,10 +37,11 @@ class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
-        // Inflate the layout for this fragment
+
         binding = FragmentCuriosityBinding.inflate(inflater, container, false)
-        initViews()
+        this.page = 1
         return binding.root
     }
 
@@ -47,29 +51,60 @@ class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
 
         (activity as MainActivity).addListener(this)
 
+        if (camera == null) {
+            binding.curiosityRecyclerView.addOnScrollListener(object :
+                RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (!recyclerView.canScrollVertically(1)) {
+                        page++
+                        fetchDataByPage(page, null)
+                    }
+                }
+            })
+        } else {
+            binding.curiosityRecyclerView.addOnScrollListener(object :
+                RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (!recyclerView.canScrollVertically(1)) {
+                        page++
+                        fetchDataByPage(page, camera)
+                    }
+                }
+            })
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+        fetchDataByPage(page, null)
+        this.camera = null
 
-        viewModel.getRoverByName("curiosity",camera = null,page=null).observe(viewLifecycleOwner, { response ->
+    }
 
-            when (response.status) {
-                Resource.Status.LOADING -> {
+    //paging photos by rover get page id to fetch data
+    private fun fetchDataByPage(page: Int, camera: String?) {
 
+
+        viewModel.getRoverByName("curiosity", camera, page = page)
+            .observe(viewLifecycleOwner, { response ->
+
+                when (response.status) {
+                    Resource.Status.LOADING -> {
+
+                    }
+                    Resource.Status.SUCCESS -> {
+                        viewModel.photoList = response.data?.photos
+                        setPhotoList(viewModel.photoList)
+                        Log.d("CuriosityFragment", "photoListSize: " + viewModel.photoList?.size)
+                    }
+                    Resource.Status.ERROR -> {
+                    }
                 }
-                Resource.Status.SUCCESS -> {
-//                    Log.d(ContentValues.TAG, "onCreate: "+response.data.toString())
-                    viewModel.photoList = response.data?.photos
-                    // if its not null add all
-                    setPhotoList(viewModel.photoList)
-                    Log.d("TAG", "onClick: " + viewModel.photoList?.size)
-                }
-                Resource.Status.ERROR -> {
-                }
-            }
 
-        })
+            })
     }
 
     private fun setPhotoList(photoList: ArrayList<Photo>?) {
@@ -81,7 +116,6 @@ class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
     }
 
     override fun onClick(photo: Photo) {
-        Log.d(ContentValues.TAG, "onClick: sadasd")
         setPhotoDetails(photo)
     }
 
@@ -90,28 +124,38 @@ class CuriosityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
         popupdialog.show(requireActivity().supportFragmentManager, "PopUpDialog")
     }
 
+    //filter by camera and paging
     override fun onMenuClick(camera: String) {
 
-        Log.d("TAG", "onMenuClick: " + camera)
-        viewModel.getRoverByName("curiosity", camera,page = null).observe(viewLifecycleOwner, { response ->
+        Log.d("CuriosityFragmentFilter", "CameraName: " + camera)
 
-            when (response.status) {
-                Resource.Status.LOADING -> {
+        this.camera = camera
+        this.page = 1
 
-                }
-                Resource.Status.SUCCESS -> {
-//                    Log.d(ContentValues.TAG, "onCreate: "+response.data.toString())
-                    viewModel.photoList = response.data?.photos
-                    // if its not null add all
-                    setPhotoList(viewModel.photoList)
-                    Log.d("TAG", "onMenuClick: " + viewModel.photoList?.size)
-                }
-                Resource.Status.ERROR -> {
-                    Log.d(ContentValues.TAG, "getRestaurants: ${response.message}")
-                }
-            }
+        Log.d("CuriostiyFragmentFilter", "CameraValue: " + this.camera)
+        viewModel.getRoverByName("curiosity", camera, page = 1)
+            .observe(viewLifecycleOwner, { response ->
 
-        })
+                when (response.status) {
+                    Resource.Status.LOADING -> {
+
+                    }
+                    Resource.Status.SUCCESS -> {
+                        viewModel.photoList = response.data?.photos
+                        setPhotoList(viewModel.photoList)
+                        Log.d(
+                            "CuriosityFragmentFilter",
+                            "photoListSize: " + viewModel.photoList?.size
+                        )
+
+                        if (viewModel.photoList?.size == 0) {
+                            Toast.makeText(activity, "photo not found", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    Resource.Status.ERROR -> {
+                    }
+                }
+
+            })
     }
-
 }

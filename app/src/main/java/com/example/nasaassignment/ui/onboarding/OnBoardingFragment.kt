@@ -1,12 +1,10 @@
 package com.example.nasaassignment.ui.onboarding
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
 import com.example.nasaassignment.databinding.FragmentOnBoardingBinding
 import com.example.nasaassignment.utils.ViewPagerAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,16 +20,11 @@ class OnBoardingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         val view = binding.root
         initViewPager()
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {
@@ -43,6 +36,5 @@ class OnBoardingFragment : Fragment() {
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
         binding.wormDotsIndicator.setViewPager2(binding.viewPager)
-//        binding.viewPager.setPageTransformer(GateTransformation())
     }
 }

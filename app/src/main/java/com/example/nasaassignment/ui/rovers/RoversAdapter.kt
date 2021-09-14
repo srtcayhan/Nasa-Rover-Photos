@@ -3,13 +3,11 @@ package com.example.nasaassignment.ui.rovers
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nasaassignment.data.entity.rover.Photo
 import com.example.nasaassignment.databinding.RoverCardBinding
 import com.example.nasaassignment.ui.photodetails.IPhotoOnClick
-import com.example.nasaassignment.ui.rovers.opportunity.OpportunityFragmentDirections
 
 class RoversAdapter : RecyclerView.Adapter<RoversAdapter.RoversViewHolder>() {
 
@@ -31,9 +29,10 @@ class RoversAdapter : RecyclerView.Adapter<RoversAdapter.RoversViewHolder>() {
 
         Glide.with(holder.binding.roverCardImage.context)
             .load(rover.img_src)
+            .thumbnail(0.5f)
             .into(holder.binding.roverCardImage)
 
-        holder.binding.roverCardView.setOnClickListener{
+        holder.binding.roverCardView.setOnClickListener {
             listener?.onClick(rover)
         }
     }
@@ -47,6 +46,12 @@ class RoversAdapter : RecyclerView.Adapter<RoversAdapter.RoversViewHolder>() {
             this.notifyDataSetChanged()
         }
     }
+//    fun addPhotoList(photoList: ArrayList<Photo>?) {
+//        val listIndex = this.photoList.size
+//        this.photoList.addAll(ArrayList(photoList))
+//        notifyItemInserted(listIndex)
+//    }
+
 
     fun addListener(listener: IPhotoOnClick) {
         this.listener = listener

@@ -86,7 +86,7 @@ class OpportunityFragment : Fragment(), IPhotoOnClick, IMenuOnClick {
     private fun fetchDataByPage(page: Int, camera: String?) {
 
 
-        viewModel.getRoverByName("curiosity", camera, page = page)
+        viewModel.getRoverByName("opportunity", camera, page = page)
             .observe(viewLifecycleOwner, { response ->
 
                 when (response.status) {

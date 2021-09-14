@@ -20,7 +20,7 @@
         android:text="@string/touch_to_photo"
         android:textAllCaps="true"
         android:textSize="24sp"
-        android:textColor="#F8A39D"
+        android:textColor="@color/nasablue"
         android:fontFamily="@font/josefinsans_medium"
         android:textStyle="bold"
         android:textAlignment="center" />
@@ -31,7 +31,7 @@
         android:text="@string/for_photo_deta_ls"
         android:textAllCaps="true"
         android:textSize="24sp"
-        android:textColor="#F8A39D"
+        android:textColor="@color/nasablue"
         android:fontFamily="@font/josefinsans_medium"
         android:textStyle="bold"
         android:textAlignment="center" />
@@ -44,7 +44,7 @@
         android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nulla_aliquam_arcu_sit_amet_finibus_finibus_libero_est_malesuada_sapien_sed_efficitur_erat_dui_eu_lacus"
         android:textAllCaps="true"
         android:textSize="14sp"
-        android:textColor="#F8A39D"
+        android:textColor="@color/nasablue"
         android:fontFamily="@font/josefinsans_medium"
         android:textStyle="bold"
         android:textAlignment="center" />

@@ -22,7 +22,7 @@ Unfortunately you can display photos only choosen sol.(sol is a mars day which r
 #### Splash, Onboarding, Filter
 -----
 
-<img src="./screenshots/Onboarding_Photos_Filter.gif" height="500px" width="250px"/>
+<img src="./screenshots/OnboardingPhotosFilter.gif" height="500px" width="250px"/>
 
 #### Photo Details, Filter
 -----

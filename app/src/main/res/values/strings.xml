@@ -25,8 +25,12 @@
     <string name="filter">filter</string>
     <string name="touch_to_photo">touch to photo</string>
     <string name="for_photo_deta_ls">for photo detaıls</string>
-    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nulla_aliquam_arcu_sit_amet_finibus_finibus_libero_est_malesuada_sapien_sed_efficitur_erat_dui_eu_lacus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam, arcu sit amet finibus finibus, libero est malesuada sapien, sed efficitur erat dui eu lacus.</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nulla_aliquam_arcu_sit_amet_finibus_finibus_libero_est_malesuada_sapien_sed_efficitur_erat_dui_eu_lacus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam, arcu sit amet finibus, libero est malesuada sapien, sed efficitur erat dui eu lacus.</string>
     <string name="next">Next</string>
+    <string name="by_camera">by camera</string>
+    <string name="f_lter_photos">fılter photos</string>
+    <string name="your_favour_te_rover">your favourıte rover</string>
+    <string name="l_st_photos">lıst photos</string>
 
     <string-array name="curiosity_cameras">
         <item>@string/camera_fhaz</item>
